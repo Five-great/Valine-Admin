@@ -19,9 +19,15 @@ router.get('/', function (req, res, next) {
     
          query.find().then(function (results) {
            q1 = results;
-        }, 
+        },function(err){
+          if (err.code === 101) {
+                q1 = [];
+            } else {
+                next(err);
+            } 
+         }).catch(next); 
         qShopdata.find().then(function (results) {
-             console.log(results);
+      
              res.render('comments', {
                     title: process.env.SITE_NAME + '上的新评论',
                     domain: process.env.SITE_URL,
