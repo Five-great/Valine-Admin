@@ -14,20 +14,7 @@ router.get('/', function (req, res, next) {
         query.limit(50);
        
        
-        qShopdata.find().then(function (results) {
-            res.render('comments', {
-            
-                stop_data_list: results
-            });
-        }, function (err) {
-            if (err.code === 101) {
-                res.render('comments', {
-                   stop_data_list: []
-                });
-            } else {
-                next(err);
-            }
-        }).catch(next);
+ 
         
          query.find().then(function (results) {
             res.render('comments', {
@@ -46,6 +33,25 @@ router.get('/', function (req, res, next) {
                 next(err);
             } 
         }).catch(next);
+        
+        
+         qShopdata.find().then(function (results) {
+             console.log(results);
+             res.render('comments', {
+            
+                stop_data_list: results
+            });
+        }, function (err) {
+            if (err.code === 101) {
+                res.render('comments', {
+                   stop_data_list: []
+                });
+            } else {
+                next(err);
+            }
+        }).catch(next);
+        
+        
     } else {
         res.redirect('/');
     }
