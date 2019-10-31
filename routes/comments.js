@@ -24,6 +24,12 @@ router.get('/', function (req, res, next) {
          });
         qShopdata.find().then(function (results) {
       
+         query.find().then(function (results) {
+           q1 = results;
+          },function(err){
+                q1 = [];
+          });
+            
              res.render('comments', {
                     title: process.env.SITE_NAME + '上的新评论',
                     domain: process.env.SITE_URL,
