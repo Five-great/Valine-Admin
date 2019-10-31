@@ -45,7 +45,7 @@
               
             </div>
             <div class="vcomment">
-                <%- stop_data_list[i].get('comment') %>
+                <%- stop_data_list[i].get('name') %>
             </div>
             <div class="check">
                 <a class="red" href="javascript:if(confirm('确认要删除吗?'))location='/stop_data/delete?id=<%= stop_data_list[i].get('objectId') %>'" rel="nofollow">删除</a><span class="spacer">•</span>
