@@ -1,6 +1,7 @@
 const AV = require('leanengine');
 const mail = require('./utilities/send-mail');
 const Comment = AV.Object.extend('Comment');
+const shop_data = AV.Object.extend('shop_data');
 const request = require('request');
 AV.Cloud.afterSave('Comment', function (request) {
     let currentComment = request.object;
