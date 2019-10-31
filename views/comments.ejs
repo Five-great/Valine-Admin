@@ -43,7 +43,7 @@
                
             </div>
             <div class="vcomment">
-                <%- shop_data_list[i].get('name') %>
+                <%- shop_data_list[i] %>
             </div>
             <div class="check">
                 <a class="red" href="javascript:if(confirm('确认要删除吗?'))location='/shop_data/delete?id=<%= shop_data_list[i].get('objectId') %>'" rel="nofollow">删除</a><span class="spacer">•</span>
