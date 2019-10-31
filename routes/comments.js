@@ -20,12 +20,10 @@ router.get('/', function (req, res, next) {
          query.find().then(function (results) {
            q1 = results;
         },function(err){
-          if (err.code === 101) {
+    =
                 q1 = [];
-            } else {
-                next(err);
-            } 
-         }).catch(next); 
+           
+         });
         qShopdata.find().then(function (results) {
       
              res.render('comments', {
