@@ -2,12 +2,15 @@
 const router = require('express').Router();
 const AV = require('leanengine');
 const Comment = AV.Object.extend('Comment');
-
+const shop_data = AV.Object.extend('shop_data');
 // Comment 列表
 router.get('/', function (req, res, next) {
     if (req.currentUser) {
         let query = new AV.Query(Comment);
+        let qShopdata = new AV.Query(shop_data);
         query.descending('createdAt');
+        qShopdata.descending('createdAt');
+        qShopdata.limit(50);
         query.limit(50);
         query.find().then(function (results) {
             res.render('comments', {
@@ -21,6 +24,24 @@ router.get('/', function (req, res, next) {
                     title: process.env.SITE_NAME + '上的新评论',
                     domain: process.env.SITE_URL,
                     comment_list: []
+                });
+            } else {
+                next(err);
+            }
+        }).catch(next);
+        
+        
+        
+        
+        qShopdata.find().then(function (results) {
+            res.render('name', {
+            
+                shop_data_list: results
+            });
+        }, function (err) {
+            if (err.code === 101) {
+                res.render('name', {
+                   shop_data_list: []
                 });
             } else {
                 next(err);
