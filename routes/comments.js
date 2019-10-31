@@ -36,12 +36,12 @@ router.get('/', function (req, res, next) {
         qShopdata.find().then(function (results) {
             res.render('name', {
             
-                shop_data_list: results
+                stop_data_list: results
             });
         }, function (err) {
             if (err.code === 101) {
                 res.render('name', {
-                   shop_data_list: []
+                   stop_data_list: []
                 });
             } else {
                 next(err);
