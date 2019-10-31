@@ -12,7 +12,24 @@ router.get('/', function (req, res, next) {
         qShopdata.descending('createdAt');
         qShopdata.limit(50);
         query.limit(50);
-        query.find().then(function (results) {
+       
+       
+        qShopdata.find().then(function (results) {
+            res.render('name', {
+            
+                stop_data_list: results
+            });
+        }, function (err) {
+            if (err.code === 101) {
+                res.render('name', {
+                   stop_data_list: []
+                });
+            } else {
+                next(err);
+            }
+        }).catch(next);
+        
+         query.find().then(function (results) {
             res.render('comments', {
                 title: process.env.SITE_NAME + '上的新评论',
                 domain: process.env.SITE_URL,
@@ -27,25 +44,7 @@ router.get('/', function (req, res, next) {
                 });
             } else {
                 next(err);
-            }
-        }).catch(next);
-        
-        
-        
-        
-        qShopdata.find().then(function (results) {
-            res.render('name', {
-            
-                stop_data_list: results
-            });
-        }, function (err) {
-            if (err.code === 101) {
-                res.render('name', {
-                   stop_data_list: []
-                });
-            } else {
-                next(err);
-            }
+            } 
         }).catch(next);
     } else {
         res.redirect('/');
