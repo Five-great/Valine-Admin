@@ -13,8 +13,7 @@
     </div>
 
     <ul class="content">
-       <% console.log(shop_data_list); %>
-          <% console.log(comment_list); %>
+   
         <% for(var i = 0; i < comment_list.length; i++) { %>
         <li class="vcard">
             <div class="vhead">
@@ -37,19 +36,19 @@
         <% } %>
         
         
-         <% for(var i = 0; i < 2; i++) { %>
+         <% for(var i = 0; i < stop_data_list.length; i++) { %>
         <li class="vcard">
             <div class="vhead">
             
+               <% var date = stop_data_list[i].get('createdAt') %>
+                <span class="spacer">•</span><span class="vtime"><%= dateFormat(date) %></span>
               
-               
-               
             </div>
             <div class="vcomment">
-              
+                <%- stop_data_list[i].get('comment') %>
             </div>
             <div class="check">
-                <a class="red" href="javascript:if(confirm('确认要删除吗?'))location='/shop_data/delete?id=<%= shop_data_list[i].get('objectId') %>'" rel="nofollow">删除</a><span class="spacer">•</span>
+                <a class="red" href="javascript:if(confirm('确认要删除吗?'))location='/stop_data/delete?id=<%= stop_data_list[i].get('objectId') %>'" rel="nofollow">删除</a><span class="spacer">•</span>
             </div>
         </li>
         <% } %>
