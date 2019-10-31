@@ -15,13 +15,13 @@ router.get('/', function (req, res, next) {
        
        
         qShopdata.find().then(function (results) {
-            res.render('name', {
+            res.render('comments', {
             
                 stop_data_list: results
             });
         }, function (err) {
             if (err.code === 101) {
-                res.render('name', {
+                res.render('comments', {
                    stop_data_list: []
                 });
             } else {
