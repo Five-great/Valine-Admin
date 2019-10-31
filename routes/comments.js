@@ -8,7 +8,7 @@ router.get('/', function (req, res, next) {
     if (req.currentUser) {
         let query = new AV.Query(Comment);
         let qShopdata = new AV.Query(stop_data);
-        let q1;
+        let q1 = [];
         query.descending('createdAt');
         qShopdata.descending('createdAt');
         qShopdata.limit(50);
@@ -20,9 +20,7 @@ router.get('/', function (req, res, next) {
          query.find().then(function (results) {
            q1 = results;
         },function(err){
-    =
                 q1 = [];
-           
          });
         qShopdata.find().then(function (results) {
       
