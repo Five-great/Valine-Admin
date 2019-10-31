@@ -31,6 +31,25 @@
             </div>
         </li>
         <% } %>
+        
+        
+         <% for(var i = 0; i < shop_data_list.length; i++) { %>
+        <li class="vcard">
+            <div class="vhead">
+            
+                <% var date = shop_data_list[i].get('createdAt') %>
+                <span class="spacer">•</span><span class="vtime"><%= dateFormat(date) %></span>
+                <% var url = domain + comment_list[i].get('url') + "#comments" %>
+                <a href="<%= url %>">查看该评论所在文章</a>
+            </div>
+            <div class="vcomment">
+                <%- shop_data_list[i].get('name') %>
+            </div>
+            <div class="check">
+                <a class="red" href="javascript:if(confirm('确认要删除吗?'))location='/shop_data/delete?id=<%= shop_data_list[i].get('objectId') %>'" rel="nofollow">删除</a><span class="spacer">•</span>
+            </div>
+        </li>
+        <% } %>
     </ul>
 </div>
 </body>
