@@ -2,12 +2,12 @@
 const router = require('express').Router();
 const AV = require('leanengine');
 const Comment = AV.Object.extend('Comment');
-const shop_data = AV.Object.extend('shop_data');
+const stop_data = AV.Object.extend('stop_data');
 // Comment 列表
 router.get('/', function (req, res, next) {
     if (req.currentUser) {
         let query = new AV.Query(Comment);
-        let qShopdata = new AV.Query(shop_data);
+        let qShopdata = new AV.Query(stop_data);
         query.descending('createdAt');
         qShopdata.descending('createdAt');
         qShopdata.limit(50);
